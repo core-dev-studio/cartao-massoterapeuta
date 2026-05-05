@@ -2,68 +2,65 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Vinícius Brito | Massoterapeuta</title>
-    <!-- Fontes para sofisticação e clareza -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
         :root {
-            --ocean: #1a3a4a;
+            --ocean: #132a36;
             --sand: #d4a373;
             --silk: #fefae0;
-            --glass: rgba(255, 255, 255, 0.05);
+            --glass: rgba(255, 255, 255, 0.04);
             --open: #81c784;
             --closed: #e57373;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(180deg, #132a36 0%, #1a3a4a 100%);
+            background: radial-gradient(circle at top, #1a3a4a, #0d1b2a);
             font-family: 'Quicksand', sans-serif;
             color: var(--silk);
             overflow: hidden;
-            position: relative;
         }
 
-        /* Efeito de luz de fundo suave */
-        body::before {
-            content: "";
+        /* Controle de Áudio Sutil */
+        .audio-toggle {
             position: absolute;
-            width: 140%;
-            height: 140%;
-            background: radial-gradient(circle, rgba(212, 163, 115, 0.06) 0%, transparent 60%);
-            animation: drift 15s ease-in-out infinite alternate;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: var(--sand);
+            font-size: 1.1rem;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0.6;
+            transition: opacity 0.3s;
         }
 
-        @keyframes drift {
-            from { transform: translate(-5%, -5%); }
-            to { transform: translate(5%, 5%); }
-        }
+        .container { z-index: 1; width: 100%; max-width: 360px; padding: 20px; transition: filter 0.3s ease; }
 
-        .container { z-index: 1; width: 100%; max-width: 370px; padding: 20px; }
-
-        /* Card com Glassmorphism e bordas orgânicas */
         .card {
             background: var(--glass);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 60px 20px 60px 20px; 
-            padding: 40px 30px;
+            border-radius: 55px 20px 55px 20px; 
+            padding: 40px 25px;
             text-align: center;
             box-shadow: 0 25px 50px rgba(0,0,0,0.3);
         }
 
-        /* Foto Orgânica (Liquid) - Evita cortes na imagem vini.webp */
-        .profile-box {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 15px;
+        /* Foto Liquid Integral */
+        .profile-wrapper {
+            width: 135px;
+            height: 135px;
+            margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -73,217 +70,128 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            animation: liquid 8s ease-in-out infinite;
+            animation: liquid-border 8s ease-in-out infinite;
             background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(212, 163, 115, 0.2);
         }
 
-        @keyframes liquid {
-            0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-            50% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 60%; }
+        @keyframes liquid-border {
+            0%, 100% { border-radius: 45% 55% 70% 30% / 45% 55% 60% 40%; }
+            50% { border-radius: 60% 40% 35% 65% / 55% 65% 45% 55%; }
         }
 
-        /* Controle de Áudio */
-        .music-btn {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--sand);
-            color: var(--sand);
-            border-radius: 20px;
-            padding: 5px 15px;
-            font-size: 0.65rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            transition: 0.3s;
-        }
+        .status-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px; padding: 5px 15px; border-radius: 30px; background: rgba(0,0,0,0.2); }
+        .dot { width: 7px; height: 7px; border-radius: 50%; }
+        .pulse { animation: pulse-anim 2s infinite; }
+        @keyframes pulse-anim { 0% { box-shadow: 0 0 0 0px rgba(129, 199, 132, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(129, 199, 132, 0); } 100% { box-shadow: 0 0 0 0px rgba(129, 199, 132, 0); } }
 
-        /* Status de Funcionamento */
-        .status-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.7rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            padding: 5px 15px;
-            border-radius: 30px;
-            background: rgba(0,0,0,0.2);
-        }
+        h1 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 5px; font-style: italic; }
+        .subtitle { font-size: 0.75rem; letter-spacing: 3px; color: var(--sand); margin-bottom: 30px; display: block; }
 
-        .dot { width: 8px; height: 8px; border-radius: 50%; }
-        .pulse { animation: pulse-animation 2s infinite; }
+        .btn { display: block; width: 100%; padding: 17px; margin-bottom: 12px; border-radius: 22px; text-decoration: none; color: var(--silk); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 163, 115, 0.15); transition: 0.3s; font-size: 0.9rem; cursor: pointer; text-align: center; }
+        .primary { background: var(--sand); color: var(--ocean); font-weight: 600; border: none; }
 
-        @keyframes pulse-animation {
-            0% { box-shadow: 0 0 0 0px rgba(129, 199, 132, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(129, 199, 132, 0); }
-            100% { box-shadow: 0 0 0 0px rgba(129, 199, 132, 0); }
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.9rem;
-            font-weight: 400;
-            margin-bottom: 5px;
-            font-style: italic;
-        }
-
-        .sub {
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            color: var(--sand);
-            margin-bottom: 30px;
-            display: block;
-        }
-
-        /* Botões Objetivos */
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 18px;
-            margin-bottom: 12px;
-            border-radius: 25px;
-            text-decoration: none;
-            color: var(--silk);
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(212, 163, 115, 0.15);
-            transition: 0.4s ease;
-            font-size: 0.95rem;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background: rgba(212, 163, 115, 0.1);
-            border-color: var(--sand);
-            transform: translateY(-2px);
-        }
-
-        .btn-call {
-            background: var(--sand);
-            color: var(--ocean);
-            font-weight: 600;
-            border: none;
-        }
-
-        /* Modal Gentil */
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(19, 42, 54, 0.98);
-            z-index: 10;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-        }
-
-        .modal {
-            text-align: center;
-            max-width: 320px;
-        }
-
-        .modal h2 { font-family: 'Playfair Display', serif; margin-bottom: 20px; color: var(--sand); }
-        .modal p { line-height: 1.8; margin-bottom: 30px; font-size: 0.95rem; opacity: 0.9; }
-        
-        .btn-close {
-            background: none;
-            border: 1px solid var(--sand);
-            color: var(--sand);
-            padding: 12px 40px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-        }
+        /* Modal Suave */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 20; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+        .modal { background: #1a2f3a; width: 85%; max-width: 310px; padding: 35px 25px; border-radius: 40px; text-align: center; border: 1px solid var(--sand); animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .modal h2 { font-family: 'Playfair Display', serif; margin-bottom: 15px; color: var(--sand); }
+        .modal p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 25px; }
+        .btn-close { background: var(--sand); color: var(--ocean); border: none; padding: 10px; border-radius: 12px; cursor: pointer; font-weight: 600; width: 100%; }
     </style>
 </head>
-<body>
+<body onclick="playOnce()">
 
-    <audio id="relaxMusic" loop>
+    <audio id="bgMusic" loop>
         <source src="relax.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="container">
+    <button class="audio-toggle" onclick="toggleAudio(event)" id="audioBtn">🔊</button>
+
+    <div class="container" id="content">
         <div class="card">
-            <div class="profile-box">
+            <div class="profile-wrapper">
                 <img src="vini.webp" alt="Vinícius Brito" class="profile-img">
             </div>
 
-            <button onclick="toggleMusic()" id="musicBtn" class="music-btn">
-                ♫ Iniciar som ambiente
-            </button>
-
             <div class="status-tag">
-                <div class="dot" id="dot"></div>
-                <span id="txt">Verificando...</span>
+                <div id="dot" class="dot"></div>
+                <span id="statusTxt">Carregando...</span>
             </div>
             
             <h1>Vinícius Brito</h1>
-            <span class="sub">MASSOTERAPEUTA • 10 ANOS</span>
+            <span class="subtitle">MASSOTERAPEUTA • 10 ANOS</span>
 
             <div class="menu">
-                <a href="https://wa.me/5548998530573" class="btn btn-call" target="_blank">Agendar Sessão</a>
-                <button class="btn" onclick="openM()">Atendimento em Casa</button>
+                <a href="https://wa.me/5548998530573" class="btn primary" target="_blank">Agendar Sessão</a>
+                <div class="btn" onclick="openModal()">Atendimento em Casa</div>
                 <a href="https://www.instagram.com/viniciusmterapia/" class="btn" target="_blank">Instagram</a>
-                <button class="btn" onclick="copy()" id="px">Copiar PIX</button>
+                <div class="btn" onclick="copyPix()" id="pix">Copiar PIX</div>
             </div>
         </div>
     </div>
 
-    <div class="overlay" id="ov">
-        <div class="modal">
+    <div class="overlay" id="overlay" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()">
             <h2>Bem-estar em casa</h2>
             <p>Para sua melhor experiência, sugerimos o uso de roupas confortáveis e a escolha de um ambiente calmo para o seu atendimento.</p>
-            <button class="btn-close" onclick="closeM()">Entendi</button>
+            <button class="btn-close" onclick="closeModal()">Entendido</button>
         </div>
     </div>
 
     <script>
-        // Lógica de Status (09:00 às 22:00)
-        function updateStatus() {
+        const audio = document.getElementById('bgMusic');
+        let hasStarted = false;
+
+        function playOnce() {
+            if (!hasStarted) {
+                audio.play();
+                hasStarted = true;
+            }
+        }
+
+        function toggleAudio(e) {
+            e.stopPropagation();
+            if (audio.paused) {
+                audio.play();
+                document.getElementById('audioBtn').innerText = '🔊';
+            } else {
+                audio.pause();
+                document.getElementById('audioBtn').innerText = '🔇';
+            }
+        }
+
+        function checkTime() {
             const h = new Date().getHours();
             const d = document.getElementById('dot');
-            const t = document.getElementById('txt');
+            const t = document.getElementById('statusTxt');
             if (h >= 9 && h < 22) {
-                d.style.background = 'var(--open)';
-                d.classList.add('pulse');
+                d.style.background = 'var(--open)'; d.classList.add('pulse');
                 t.innerText = 'Disponível agora';
             } else {
-                d.style.background = 'var(--closed)';
-                d.classList.remove('pulse');
+                d.style.background = 'var(--closed)'; d.classList.remove('pulse');
                 t.innerText = 'Fechado no momento';
             }
         }
 
-        // Lógica da Música
-        function toggleMusic() {
-            const audio = document.getElementById('relaxMusic');
-            const btn = document.getElementById('musicBtn');
-            if (audio.paused) {
-                audio.play().catch(e => console.log("O navegador exige interação do usuário."));
-                btn.innerText = "|| Pausar som";
-                btn.style.background = "rgba(212, 163, 115, 0.2)";
-            } else {
-                audio.pause();
-                btn.innerText = "♫ Iniciar som ambiente";
-                btn.style.background = "rgba(255,255,255,0.05)";
-            }
+        function openModal() {
+            document.getElementById('overlay').style.display = 'flex';
+            document.getElementById('content').style.filter = 'blur(6px)';
         }
 
-        // Modais e Auxiliares
-        function openM() { document.getElementById('ov').style.display = 'flex'; }
-        function closeM() { document.getElementById('ov').style.display = 'none'; }
-        
-        function copy() {
-            navigator.clipboard.writeText("5548998530573");
-            const b = document.getElementById('px');
-            b.innerText = "Copiado!";
-            setTimeout(() => { b.innerText = "Copiar PIX"; }, 2000);
+        function closeModal() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('content').style.filter = 'none';
         }
 
-        updateStatus();
-        window.onclick = (e) => { if(e.target.id === 'ov') closeM(); }
+        function copyPix() {
+            navigator.clipboard.writeText("74991097643");
+            const btn = document.getElementById('pix');
+            btn.innerText = "Copiado!";
+            setTimeout(() => { btn.innerText = "Copiar PIX"; }, 2000);
+        }
+
+        checkTime();
     </script>
 </body>
 </html>
