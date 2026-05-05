@@ -3,220 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maya Sereno | Massoterapeuta</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Vinícius Brito | Massoterapeuta</title>
+    <!-- Fontes para sofisticação e clareza -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-body: #e2d9cf; 
-            --card-bg: #fdfbf7; /* Creme de Seda leve */
-            --primary-olive: #556b2f; 
-            --gold-details: #b59963;
-            --text-main: #3e3a34;
-            --soft-depth: 0 25px 50px rgba(0, 0, 0, 0.12);
-            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --ocean: #1a3a4a;
+            --sand: #d4a373;
+            --silk: #fefae0;
+            --glass: rgba(255, 255, 255, 0.05);
+            --open: #81c784;
+            --closed: #e57373;
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            margin: 0;
-            background-color: var(--bg-body);
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text-main);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            background: linear-gradient(180deg, #132a36 0%, #1a3a4a 100%);
+            font-family: 'Quicksand', sans-serif;
+            color: var(--silk);
+            overflow: hidden;
+            position: relative;
         }
 
-        .main-card {
-            background: var(--card-bg);
-            width: 100%;
-            max-width: 380px;
-            padding: 45px 25px;
-            border-radius: 45px;
-            box-shadow: var(--soft-depth);
+        /* Efeito de luz de fundo suave */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(212, 163, 115, 0.06) 0%, transparent 60%);
+            animation: drift 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes drift {
+            from { transform: translate(-5%, -5%); }
+            to { transform: translate(5%, 5%); }
+        }
+
+        .container { z-index: 1; width: 100%; max-width: 370px; padding: 20px; }
+
+        /* Card com Glassmorphism e bordas orgânicas */
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 60px 20px 60px 20px; 
+            padding: 40px 30px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        /* Foto Orgânica (Liquid) - Evita cortes na imagem vini.webp */
+        .profile-box {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .profile-img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid #fff;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            margin-bottom: 15px;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: liquid 8s ease-in-out infinite;
+            background: rgba(255,255,255,0.03);
         }
 
-        h1 { font-weight: 600; font-size: 1.6rem; margin: 0; color: var(--primary-olive); }
-        .subtitle { font-weight: 300; font-size: 0.85rem; margin-top: 5px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; }
+        @keyframes liquid {
+            0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            50% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 60%; }
+        }
 
-        .status-badge {
+        /* Controle de Áudio */
+        .music-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--sand);
+            color: var(--sand);
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 0.65rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        /* Status de Funcionamento */
+        .status-tag {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            margin: 25px 0 30px;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border: 1px solid rgba(0,0,0,0.04);
-            color: var(--primary-olive);
+            gap: 8px;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            padding: 5px 15px;
+            border-radius: 30px;
+            background: rgba(0,0,0,0.2);
         }
 
-        .dot { width: 9px; height: 9px; border-radius: 50%; background: #76a361; position: relative; }
-        .dot::after {
-            content: '';
-            position: absolute;
-            width: 100%; height: 100%;
-            background: inherit;
-            border-radius: 50%;
-            animation: pulse-ring 2s infinite;
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .pulse { animation: pulse-animation 2s infinite; }
+
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0px rgba(129, 199, 132, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(129, 199, 132, 0); }
+            100% { box-shadow: 0 0 0 0px rgba(129, 199, 132, 0); }
         }
 
-        @keyframes pulse-ring {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(3.5); opacity: 0; }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            font-weight: 400;
+            margin-bottom: 5px;
+            font-style: italic;
         }
 
-        .link-stack { display: flex; flex-direction: column; gap: 14px; }
+        .sub {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: var(--sand);
+            margin-bottom: 30px;
+            display: block;
+        }
 
+        /* Botões Objetivos */
         .btn {
             display: block;
+            width: 100%;
+            padding: 18px;
+            margin-bottom: 12px;
+            border-radius: 25px;
             text-decoration: none;
-            color: var(--text-main);
-            background: #fff;
-            padding: 16px;
-            border-radius: 18px;
-            font-weight: 500;
+            color: var(--silk);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(212, 163, 115, 0.15);
+            transition: 0.4s ease;
             font-size: 0.95rem;
-            border: 1px solid #f2f2f2;
-            transition: var(--transition);
             cursor: pointer;
         }
 
         .btn:hover {
-            transform: translateY(-4px);
-            border-color: var(--gold-details);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            background: rgba(212, 163, 115, 0.1);
+            border-color: var(--sand);
+            transform: translateY(-2px);
         }
 
-        .btn-main {
-            background: var(--primary-olive);
-            color: #fff;
+        .btn-call {
+            background: var(--sand);
+            color: var(--ocean);
+            font-weight: 600;
             border: none;
-            padding: 17px; 
-            box-shadow: 0 12px 24px rgba(85, 107, 47, 0.2);
         }
 
-        .btn-main:hover { filter: brightness(1.1); color: #fff; }
-
-        .tech-box {
+        /* Modal Gentil */
+        .overlay {
             display: none;
-            text-align: left;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 18px;
-            font-size: 0.85rem;
-            border: 1px solid #eee;
-            margin-top: -6px;
-            line-height: 1.6;
-        }
-
-        .pix-wrap { margin-top: 15px; display: flex; justify-content: center; }
-        .btn-pix {
-            background: transparent;
-            border: 1.5px dashed var(--gold-details);
-            color: var(--gold-details);
-            padding: 10px 25px;
-            font-size: 0.8rem;
-            border-radius: 12px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: 0.3s;
-        }
-
-        .pix-success {
-            position: absolute;
-            inset: 0;
-            background: var(--primary-olive);
-            color: #fff;
-            display: flex;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(19, 42, 54, 0.98);
+            z-index: 10;
             align-items: center;
             justify-content: center;
-            transform: translateY(100%);
-            transition: 0.4s;
+            padding: 30px;
+            backdrop-filter: blur(10px);
         }
-        .btn-pix.active .pix-success { transform: translateY(0); }
 
+        .modal {
+            text-align: center;
+            max-width: 320px;
+        }
+
+        .modal h2 { font-family: 'Playfair Display', serif; margin-bottom: 20px; color: var(--sand); }
+        .modal p { line-height: 1.8; margin-bottom: 30px; font-size: 0.95rem; opacity: 0.9; }
+        
+        .btn-close {
+            background: none;
+            border: 1px solid var(--sand);
+            color: var(--sand);
+            padding: 12px 40px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="main-card">
-        <img src="perfil.webp" alt="Maya Sereno" class="profile-img">
+    <audio id="relaxMusic" loop>
+        <source src="relax.mp3" type="audio/mpeg">
+    </audio>
 
-        <h1>Maya Sereno</h1>
-        <p class="subtitle">Massoterapeuta</p>
-
-        <div class="status-badge">
-            <span id="status-dot" class="dot"></span>
-            <span id="status-text">Disponível para novos atendimentos.</span>
-        </div>
-
-        <div class="link-stack">
-            <!-- Botão com a nova mensagem personalizada -->
-            <a href="https://wa.me/5574988017089?text=Oi,%20Maya!%20Gostaria%20de%20reservar%20um%20momento%20para%20minha%20massagem.%20Quais%20são%20os%20horários%20disponíveis?" class="btn btn-main" target="_blank">
-                Quero reservar a minha massagem
-            </a>
-
-            <div class="btn" onclick="toggleTechs()">Conheça as técnicas</div>
-            <div id="tech-list" class="tech-box">
-                <ul style="margin:0; padding-left:18px; color: #556b2f;">
-                    <li><strong>Relaxante:</strong> Redução de estresse e tensões.</li>
-                    <li><strong>Drenagem Linfática:</strong> Desintoxicação e inchaço.</li>
-                    <li><strong>Deep Tissue:</strong> Liberação de pontos de dor profundos.</li>
-                    <li><strong>Liberação Miofascial:</strong> Mobilidade e performance.</li>
-                    <li><strong>Desportiva:</strong> Recuperação pós-exercício.</li>
-                    <li><strong>Reflexologia:</strong> Bem-estar através dos pés.</li>
-                    <li><strong>Ventosaterapia:</strong> Melhora da circulação local.</li>
-                </ul>
+    <div class="container">
+        <div class="card">
+            <div class="profile-box">
+                <img src="vini.webp" alt="Vinícius Brito" class="profile-img">
             </div>
 
-            <a href="https://www.google.com/maps/place/R.+Vinte+e+Um,+30+-+Xique-Xique,+BA" class="btn" target="_blank">
-                Localização do Studio
-            </a>
+            <button onclick="toggleMusic()" id="musicBtn" class="music-btn">
+                ♫ Iniciar som ambiente
+            </button>
 
-            <a href="https://www.instagram.com/_arcannjo/" class="btn" target="_blank">
-                Instagram Profissional
-            </a>
+            <div class="status-tag">
+                <div class="dot" id="dot"></div>
+                <span id="txt">Verificando...</span>
+            </div>
+            
+            <h1>Vinícius Brito</h1>
+            <span class="sub">MASSOTERAPEUTA • 10 ANOS</span>
 
-            <div class="pix-wrap">
-                <div class="btn-pix" onclick="copyPix()">
-                    <span>Copiar chave PIX</span>
-                    <div class="pix-success">Chave copiada! ✓</div>
-                </div>
+            <div class="menu">
+                <a href="https://wa.me/5548998530573" class="btn btn-call" target="_blank">Agendar Sessão</a>
+                <button class="btn" onclick="openM()">Atendimento em Casa</button>
+                <a href="https://www.instagram.com/viniciusmterapia/" class="btn" target="_blank">Instagram</a>
+                <button class="btn" onclick="copy()" id="px">Copiar PIX</button>
             </div>
         </div>
     </div>
 
+    <div class="overlay" id="ov">
+        <div class="modal">
+            <h2>Bem-estar em casa</h2>
+            <p>Para sua melhor experiência, sugerimos o uso de roupas confortáveis e a escolha de um ambiente calmo para o seu atendimento.</p>
+            <button class="btn-close" onclick="closeM()">Entendi</button>
+        </div>
+    </div>
+
     <script>
-        function toggleTechs() {
-            const box = document.getElementById('tech-list');
-            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        // Lógica de Status (09:00 às 22:00)
+        function updateStatus() {
+            const h = new Date().getHours();
+            const d = document.getElementById('dot');
+            const t = document.getElementById('txt');
+            if (h >= 9 && h < 22) {
+                d.style.background = 'var(--open)';
+                d.classList.add('pulse');
+                t.innerText = 'Disponível agora';
+            } else {
+                d.style.background = 'var(--closed)';
+                d.classList.remove('pulse');
+                t.innerText = 'Fechado no momento';
+            }
         }
 
-        function copyPix() {
-            const pixKey = "aline0arcanjo10@gmail";
-            const btn = document.querySelector('.btn-pix');
-            navigator.clipboard.writeText(pixKey).then(() => {
-                btn.classList.add('active');
-                setTimeout(() => btn.classList.remove('active'), 2000);
-            });
+        // Lógica da Música
+        function toggleMusic() {
+            const audio = document.getElementById('relaxMusic');
+            const btn = document.getElementById('musicBtn');
+            if (audio.paused) {
+                audio.play().catch(e => console.log("O navegador exige interação do usuário."));
+                btn.innerText = "|| Pausar som";
+                btn.style.background = "rgba(212, 163, 115, 0.2)";
+            } else {
+                audio.pause();
+                btn.innerText = "♫ Iniciar som ambiente";
+                btn.style.background = "rgba(255,255,255,0.05)";
+            }
         }
+
+        // Modais e Auxiliares
+        function openM() { document.getElementById('ov').style.display = 'flex'; }
+        function closeM() { document.getElementById('ov').style.display = 'none'; }
+        
+        function copy() {
+            navigator.clipboard.writeText("5548998530573");
+            const b = document.getElementById('px');
+            b.innerText = "Copiado!";
+            setTimeout(() => { b.innerText = "Copiar PIX"; }, 2000);
+        }
+
+        updateStatus();
+        window.onclick = (e) => { if(e.target.id === 'ov') closeM(); }
     </script>
 </body>
 </html>
