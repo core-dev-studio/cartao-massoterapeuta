@@ -19,13 +19,11 @@
 
         body {
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: block; /* Ajustado para permitir o footer abaixo */
             background: radial-gradient(circle at top, #1a3a4a, #0d1b2a);
             font-family: 'Quicksand', sans-serif;
             color: var(--silk);
-            overflow: hidden;
+            padding: 20px;
         }
 
         .audio-toggle {
@@ -41,7 +39,14 @@
             opacity: 0.6;
         }
 
-        .container { z-index: 1; width: 100%; max-width: 360px; padding: 20px; transition: filter 0.3s ease; }
+        .container { 
+            z-index: 1; 
+            width: 100%; 
+            max-width: 360px; 
+            margin: 60px auto 0; /* Centraliza e dá espaço para o botão de áudio */
+            padding: 0; 
+            transition: filter 0.3s ease; 
+        }
 
         .card {
             background: var(--glass);
@@ -139,7 +144,6 @@
         const audio = document.getElementById('bgMusic');
         let hasStarted = false;
 
-        // Tenta tocar assim que carregar a página
         window.addEventListener('load', () => {
             audio.play().then(() => {
                 hasStarted = true;
@@ -148,7 +152,6 @@
             });
         });
 
-        // Toca no primeiro clique se o autoplay falhar
         function playOnce() {
             if (!hasStarted) {
                 audio.play();
@@ -199,5 +202,11 @@
 
         checkTime();
     </script>
+
+    <footer style="width: 100%; text-align: center; padding: 40px 0; font-family: 'Quicksand', sans-serif;">
+        <p style="font-size: 10px; letter-spacing: 2px; color: var(--sand); margin: 0; opacity: 0.6;">
+            design & code by a.arc
+        </p>
+    </footer>
 </body>
 </html>
